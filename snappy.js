@@ -1,12 +1,21 @@
 function makeSnappy(deck, outputter, player1, player2) {
 
     function play() {
-        let card1 = deck.takeCard();
-        outputter.display(`${player1} turned card '${card1}'`);
-        let card2 = deck.takeCard();
-        outputter.display(`${player2} turned card '${card2}'`);
-        let card3 = deck.takeCard();
-        outputter.display(`${player1} turned card '${card3}'`);
+        let card;
+        let player = player1;
+
+        card = deck.takeCard();
+        outputter.display(`${player} turned card '${card}'`);
+        player = player === player1 ? player2: player1;
+
+        card = deck.takeCard();
+        outputter.display(`${player} turned card '${card}'`);
+        player = player === player1 ? player2: player1;
+
+        card = deck.takeCard();
+        outputter.display(`${player} turned card '${card}'`);
+        player = player === player1 ? player2: player1;
+
     }
 
     return {
