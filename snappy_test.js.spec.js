@@ -67,6 +67,9 @@ describe("Snappy", () => {
         deck.takeCard.mockReturnValueOnce("AS")
             .mockReturnValueOnce("8H")
             .mockReturnValueOnce("8C");
+        player1.reactionTime.mockReturnValue(10);
+        player2.reactionTime.mockReturnValue(20);
+
         snappy.play();
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
@@ -78,8 +81,8 @@ describe("Snappy", () => {
         deck.takeCard.mockReturnValueOnce("AS")
             .mockReturnValueOnce("8H")
             .mockReturnValueOnce("8C");
-        player1.reactionTime.mockReturnValue(10);
-        player2.reactionTime.mockReturnValue(20);
+        player1.reactionTime.mockReturnValue(20);
+        player2.reactionTime.mockReturnValue(10);
         snappy.play();
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");

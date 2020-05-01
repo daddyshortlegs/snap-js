@@ -13,9 +13,9 @@ function makeSnappy(deck, outputter, player1, player2) {
             if (doesCardMatch(previousCard, card)) {
 
                 if (player1.reactionTime() < player2.reactionTime()) {
-                    outputter.display("SNAP! Derek wins!");
+                    outputter.display(`SNAP! ${player1.name} wins!`);
                 } else {
-                    outputter.display("SNAP! Desmond wins!");
+                    outputter.display(`SNAP! ${player2.name} wins!`);
                 }
             }
 
