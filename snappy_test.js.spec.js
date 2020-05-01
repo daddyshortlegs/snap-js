@@ -22,10 +22,12 @@ describe("Snappy", () => {
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
     });
 
-    it("derek should turn a different card", () => {
-        deck.takeCard.mockReturnValueOnce("9C");
+    it("desmond should turn a different card", () => {
+        deck.takeCard.mockReturnValueOnce("AS")
+            .mockReturnValueOnce("8H");
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '9C'");
+        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
+        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
     });
 
 });
