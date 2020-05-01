@@ -11,7 +11,12 @@ function makeSnappy(deck, outputter, player1, player2) {
         while (card = deck.takeCard()) {
             outputter.display(`${player.name} turned card '${card}'`);
             if (doesCardMatch(previousCard, card)) {
-                outputter.display("SNAP! Desmond wins!");
+
+                if (player1.reactionTime() < player2.reactionTime()) {
+                    outputter.display("SNAP! Derek wins!");
+                } else {
+                    outputter.display("SNAP! Desmond wins!");
+                }
             }
 
             previousCard = card;

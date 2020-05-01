@@ -4,9 +4,14 @@ function makePlayer(name, deck) {
 
     }
 
+    function reactionTime() {
+
+    }
+
     return {
         takeCard,
-        name
+        name,
+        reactionTime
     };
 }
 

@@ -16,7 +16,9 @@ describe("Snappy", () => {
         outputter = makeOutputter();
         outputter.display = jest.fn();
         player1 = makePlayer("Desmond");
+        player1.reactionTime = jest.fn();
         player2 = makePlayer("Derek");
+        player2.reactionTime = jest.fn();
 
         snappy = makeSnappy(deck, outputter, player1, player2);
     });
@@ -70,6 +72,19 @@ describe("Snappy", () => {
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '8C'");
         expect(outputter.display).toHaveBeenCalledWith("SNAP! Desmond wins!");
+    });
+
+    it("Derek should win as he's quicker", () => {
+        deck.takeCard.mockReturnValueOnce("AS")
+            .mockReturnValueOnce("8H")
+            .mockReturnValueOnce("8C");
+        player1.reactionTime.mockReturnValue(10);
+        player2.reactionTime.mockReturnValue(20);
+        snappy.play();
+        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
+        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
+        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '8C'");
+        expect(outputter.display).toHaveBeenCalledWith("SNAP! Derek wins!");
     });
 
 });
