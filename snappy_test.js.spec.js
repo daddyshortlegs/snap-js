@@ -56,4 +56,16 @@ describe("Snappy", () => {
         expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
     });
 
+    it("Desmond should win as he's quicker", () => {
+        deck.takeCard.mockReturnValueOnce("AS")
+            .mockReturnValueOnce("8H")
+            .mockReturnValueOnce("8C");
+        snappy.play();
+        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
+        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
+        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '8C'");
+        expect(outputter.display).toHaveBeenCalledWith("SNAP! Desmond wins!");
+    });
+
+
 });
