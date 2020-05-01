@@ -1,7 +1,7 @@
 function makeOutputter() {
 
-    function display() {
-
+    function display(text) {
+        console.log(text);
     }
 
     return {
