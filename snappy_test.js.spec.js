@@ -1,19 +1,24 @@
 const makeSnappy = require("./snappy").makeSnappy;
 const makeDeck = require("./deck").makeDeck;
 const makeOutputter = require("./outputter").makeOutputter;
+const makePlayer = require("./player").makePlayer;
 
 describe("Snappy", () => {
     let deck;
     let snappy;
     let outputter;
+    let player1;
+    let player2;
 
     beforeEach(() => {
         deck = makeDeck();
         deck.takeCard = jest.fn();
         outputter = makeOutputter();
         outputter.display = jest.fn();
+        player1 = makePlayer("Desmond");
+        player2 = makePlayer("Derek");
 
-        snappy = makeSnappy(deck, outputter, "Desmond", "Derek");
+        snappy = makeSnappy(deck, outputter, player1, player2);
     });
 
     it("desmond should turn a card", () => {
@@ -66,6 +71,5 @@ describe("Snappy", () => {
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '8C'");
         expect(outputter.display).toHaveBeenCalledWith("SNAP! Desmond wins!");
     });
-
 
 });

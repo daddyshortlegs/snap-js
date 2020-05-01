@@ -9,7 +9,7 @@ function makeSnappy(deck, outputter, player1, player2) {
         let player = player1;
 
         while (card = deck.takeCard()) {
-            outputter.display(`${player} turned card '${card}'`);
+            outputter.display(`${player.name} turned card '${card}'`);
             if (doesCardMatch(previousCard, card)) {
                 outputter.display("SNAP! Desmond wins!");
             }
