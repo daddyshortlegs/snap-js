@@ -1,7 +1,7 @@
-function makeSnappy(deck, outputter) {
+function makeSnappy(deck, outputter, player1) {
 
     function play() {
-        outputter.display("Player 1 turned card 'AS'");
+        outputter.display(`$player1 turned card 'AS'`);
     }
 
     return {

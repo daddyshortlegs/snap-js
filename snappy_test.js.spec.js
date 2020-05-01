@@ -13,15 +13,19 @@ describe("Snappy", () => {
         outputter = makeOutputter();
         outputter.display = jest.fn();
 
-        snappy = makeSnappy(deck, outputter);
+        snappy = makeSnappy(deck, outputter, "Desmond");
     });
 
-    it("should turn a card", () => {
+    it("desmond should turn a card", () => {
         deck.takeCard.mockReturnValueOnce("AS");
-
         snappy.play();
+        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
+    });
 
-        expect(outputter.display).toHaveBeenCalledWith("Player 1 turned card 'AS'");
+    it("derek should turn a card", () => {
+        deck.takeCard.mockReturnValueOnce("AS");
+        snappy.play();
+        expect(outputter.display).toHaveBeenCalledWith("Derek turned card 'AS'");
     });
 
 });
