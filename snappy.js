@@ -12,7 +12,7 @@ function makeSnappy(deck, outputter, player1, player2) {
             outputter.display(`${player} turned card '${card}'`);
             player = changePlayer(player);
         }
-
+        outputter.display('Draw. Game Over :-(');
     }
 
     return {

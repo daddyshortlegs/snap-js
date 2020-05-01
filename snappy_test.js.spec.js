@@ -20,6 +20,7 @@ describe("Snappy", () => {
         deck.takeCard.mockReturnValueOnce("AS");
         snappy.play();
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
+        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
     });
 
     it("desmond should turn a different card", () => {
@@ -28,6 +29,7 @@ describe("Snappy", () => {
         snappy.play();
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
+        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
     });
 
     it("should turn a 3rd different card", () => {
@@ -38,6 +40,7 @@ describe("Snappy", () => {
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '2D'");
+        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
     });
 
     it("should turn a 4th different card", () => {
@@ -50,6 +53,7 @@ describe("Snappy", () => {
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
         expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '2D'");
         expect(outputter.display).toHaveBeenCalledWith("Derek turned card '7C'");
+        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
     });
 
 });
