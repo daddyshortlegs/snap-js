@@ -1,18 +1,21 @@
 function makeDeck() {
     const cards = [];
 
-    cards.push("AC");
-    cards.push("KC");
-    cards.push("QC");
-    cards.push("JC");
-    cards.push("9C");
-    cards.push("8C");
-    cards.push("7C");
-    cards.push("6C");
-    cards.push("5C");
-    cards.push("4C");
-    cards.push("3C");
-    cards.push("2C");
+    makeSuit("H");
+    makeSuit("D");
+    makeSuit("S");
+    makeSuit("C");
+
+    function makeSuit(suit) {
+        cards.push("A" + suit);
+        cards.push("K" + suit);
+        cards.push("Q" + suit);
+
+        cards.push("J" + suit);
+        for (let i = 9; i > 1; i--) {
+            cards.push(`${i}${suit}`);
+        }
+    }
 
     function takeCard() {
         return cards.pop();

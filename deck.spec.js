@@ -1,21 +1,32 @@
 const makeDeck = require("./deck").makeDeck;
 
 describe("Deck of cards", () => {
-    it("should contain all the standard playing cards", () => {
-        let deck = makeDeck();
+    let deck = makeDeck();
 
-        expect(deck.takeCard()).toEqual("2C");
-        expect(deck.takeCard()).toEqual("3C");
-        expect(deck.takeCard()).toEqual("4C");
-        expect(deck.takeCard()).toEqual("5C");
-        expect(deck.takeCard()).toEqual("6C");
-        expect(deck.takeCard()).toEqual("7C");
-        expect(deck.takeCard()).toEqual("8C");
-        expect(deck.takeCard()).toEqual("9C");
-        expect(deck.takeCard()).toEqual("JC");
-        expect(deck.takeCard()).toEqual("QC");
-        expect(deck.takeCard()).toEqual("KC");
-        expect(deck.takeCard()).toEqual("AC");
+    it("should contain all the standard playing cards", () => {
+        verifySuit("C");
+        verifySuit("S");
+        verifySuit("D");
+        verifySuit("H");
     });
+
+    function verifySuit(suit) {
+        verifyCardIs("2", suit);
+        verifyCardIs("3", suit);
+        verifyCardIs("4", suit);
+        verifyCardIs("5", suit);
+        verifyCardIs("6", suit);
+        verifyCardIs("7", suit);
+        verifyCardIs("8", suit);
+        verifyCardIs("9", suit);
+        verifyCardIs("J", suit);
+        verifyCardIs("Q", suit);
+        verifyCardIs("K", suit);
+        verifyCardIs("A", suit);
+    }
+
+    function verifyCardIs(card, suit) {
+        expect(deck.takeCard()).toEqual(card + suit);
+    }
 
 });
