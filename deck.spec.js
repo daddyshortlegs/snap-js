@@ -19,6 +19,7 @@ describe("Deck of cards", () => {
         verifyCardIs("7", suit);
         verifyCardIs("8", suit);
         verifyCardIs("9", suit);
+        verifyCardIs("10", suit);
         verifyCardIs("J", suit);
         verifyCardIs("Q", suit);
         verifyCardIs("K", suit);

@@ -12,7 +12,7 @@ function makeDeck() {
         cards.push("Q" + suit);
 
         cards.push("J" + suit);
-        for (let i = 9; i > 1; i--) {
+        for (let i = 10; i > 1; i--) {
             cards.push(`${i}${suit}`);
         }
     }
