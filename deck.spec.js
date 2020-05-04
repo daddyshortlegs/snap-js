@@ -30,4 +30,21 @@ describe("Deck of cards", () => {
         expect(deck.takeCard()).toEqual(card + suit);
     }
 
+    it("should shuffle the deck", () => {
+        let unshuffledDeck = makeDeck();
+        let shuffledDeck = unshuffledDeck.shuffle();
+
+        verifyShuffledCardsPresent(shuffledDeck, "C");
+        verifyShuffledCardsPresent(shuffledDeck, "S");
+        verifyShuffledCardsPresent(shuffledDeck, "H");
+        verifyShuffledCardsPresent(shuffledDeck, "D");
+    });
+
 });
+
+function verifyShuffledCardsPresent(shuffledDeck, suit) {
+    [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"].forEach(i => {
+        let result = shuffledDeck.includes(`${i}${suit}`);
+        expect(result).toEqual(true);
+    });
+}

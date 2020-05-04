@@ -14,8 +14,28 @@ function makeDeck() {
         return cards.pop();
     }
 
+    function shuffle() {
+        let newDeck = [];
+        while (newDeck.length < 52) {
+            let pos = getRandomInt(52);
+            let card = cards[pos];
+            if (card != null) {
+                cards[pos] = null;
+                newDeck.push(card);
+            }
+        }
+
+        return newDeck;
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
     return {
-        takeCard
+        takeCard,
+        shuffle,
+        cards
     }
 }
 
