@@ -1,7 +1,7 @@
-const makeSnappy = require("./snappy").makeSnappy;
-const makeDeck = require("./deck").makeDeck;
-const makeOutputter = require("./outputter").makeOutputter;
-const makePlayer = require("./player").makePlayer;
+const makeSnappy = require("./src/snappy").makeSnappy;
+const makeDeck = require("./src/deck").makeDeck;
+const makeOutputter = require("./src/outputter").makeOutputter;
+const makePlayer = require("./src/player").makePlayer;
 
 let deck = makeDeck();
 let snappy = makeSnappy(deck,
