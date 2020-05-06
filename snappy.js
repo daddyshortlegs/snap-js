@@ -1,7 +1,3 @@
-const makeDeck = require("./deck").makeDeck;
-const makeOutputter = require("./outputter").makeOutputter;
-const makePlayer = require("./player").makePlayer;
-
 function makeSnappy(deck, outputter, player1, player2) {
 
     function play() {
@@ -39,14 +35,5 @@ function makeSnappy(deck, outputter, player1, player2) {
         play
     }
 }
-
-let outputter = makeOutputter();
-outputter.display("hello");
-let deck = makeDeck();
-let snappy = makeSnappy(deck,
-    makeOutputter(),
-    makePlayer("Bob", deck),
-    makePlayer("Alice", deck));
-snappy.play();
 
 module.exports = { makeSnappy };
