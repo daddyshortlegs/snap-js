@@ -1,5 +1,6 @@
 function makeDeck() {
     let cards = [];
+    const DECK_SIZE = 52;
 
     ["H", "D", "S", "C"].forEach(suit => makeSuit(suit));
 
@@ -16,8 +17,8 @@ function makeDeck() {
 
     function shuffle() {
         let newDeck = [];
-        while (newDeck.length < 52) {
-            let pos = getRandomInt(52);
+        while (newDeck.length < DECK_SIZE) {
+            let pos = getRandomInt(DECK_SIZE);
             let card = cards[pos];
             if (card != null) {
                 cards[pos] = null;
