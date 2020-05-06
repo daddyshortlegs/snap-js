@@ -1,6 +1,11 @@
+const makeDeck = require("./deck").makeDeck;
+const makeOutputter = require("./outputter").makeOutputter;
+const makePlayer = require("./player").makePlayer;
+
 function makeSnappy(deck, outputter, player1, player2) {
 
     function play() {
+        deck.shuffle();
         let card, previousCard = "";
         let player = player1;
 
@@ -9,6 +14,7 @@ function makeSnappy(deck, outputter, player1, player2) {
             if (doesCardMatch(previousCard, card)) {
                 let winner = decideWinner();
                 outputter.display(`SNAP! ${winner.name} wins!`);
+                return;
             }
 
             previousCard = card;
@@ -33,5 +39,14 @@ function makeSnappy(deck, outputter, player1, player2) {
         play
     }
 }
+
+let outputter = makeOutputter();
+outputter.display("hello");
+let deck = makeDeck();
+let snappy = makeSnappy(deck,
+    makeOutputter(),
+    makePlayer("Bob", deck),
+    makePlayer("Alice", deck));
+snappy.play();
 
 module.exports = { makeSnappy };

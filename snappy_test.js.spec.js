@@ -12,6 +12,7 @@ describe("Snappy", () => {
 
     beforeEach(() => {
         deck = makeDeck();
+        deck.shuffle = jest.fn();
         deck.takeCard = jest.fn();
         outputter = makeOutputter();
         outputter.display = jest.fn();
@@ -26,17 +27,22 @@ describe("Snappy", () => {
     it("desmond should turn a card", () => {
         deck.takeCard.mockReturnValueOnce("AS");
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
-        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
+        expect(deck.shuffle).toHaveBeenCalled();
+        expect(outputter.display.mock.calls).toEqual([
+            ["Desmond turned card 'AS'"],
+            ["Draw. Game Over :-("]
+        ]);
     });
 
     it("desmond should turn a different card", () => {
         deck.takeCard.mockReturnValueOnce("AS")
             .mockReturnValueOnce("8H");
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
-        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
+        expect(outputter.display.mock.calls).toEqual([
+            ["Desmond turned card 'AS'"],
+            ["Derek turned card '8H'"],
+            ["Draw. Game Over :-("]
+        ]);
     });
 
     it("should turn a 3rd different card", () => {
@@ -44,10 +50,13 @@ describe("Snappy", () => {
             .mockReturnValueOnce("8H")
             .mockReturnValueOnce("2D");
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '2D'");
-        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
+
+        expect(outputter.display.mock.calls).toEqual([
+            ["Desmond turned card 'AS'"],
+            ["Derek turned card '8H'"],
+            ["Desmond turned card '2D'"],
+            ["Draw. Game Over :-("]
+        ]);
     });
 
     it("should turn a 4th different card", () => {
@@ -56,11 +65,13 @@ describe("Snappy", () => {
             .mockReturnValueOnce("2D")
             .mockReturnValueOnce("7C");
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '2D'");
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '7C'");
-        expect(outputter.display).toHaveBeenCalledWith("Draw. Game Over :-(");
+        expect(outputter.display.mock.calls).toEqual([
+            ["Desmond turned card 'AS'"],
+            ["Derek turned card '8H'"],
+            ["Desmond turned card '2D'"],
+            ["Derek turned card '7C'"],
+            ["Draw. Game Over :-("]
+        ]);
     });
 
     it("Desmond should win as he's quicker", () => {
@@ -71,10 +82,13 @@ describe("Snappy", () => {
         player2.reactionTime.mockReturnValue(20);
 
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '8C'");
-        expect(outputter.display).toHaveBeenCalledWith("SNAP! Desmond wins!");
+
+        expect(outputter.display.mock.calls).toEqual([
+            ["Desmond turned card 'AS'"],
+            ["Derek turned card '8H'"],
+            ["Desmond turned card '8C'"],
+            ["SNAP! Desmond wins!"]
+        ]);
     });
 
     it("Derek should win as he's quicker", () => {
@@ -84,10 +98,13 @@ describe("Snappy", () => {
         player1.reactionTime.mockReturnValue(20);
         player2.reactionTime.mockReturnValue(10);
         snappy.play();
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card 'AS'");
-        expect(outputter.display).toHaveBeenCalledWith("Derek turned card '8H'");
-        expect(outputter.display).toHaveBeenCalledWith("Desmond turned card '8C'");
-        expect(outputter.display).toHaveBeenCalledWith("SNAP! Derek wins!");
+
+        expect(outputter.display.mock.calls).toEqual([
+            ["Desmond turned card 'AS'"],
+            ["Derek turned card '8H'"],
+            ["Desmond turned card '8C'"],
+            ["SNAP! Derek wins!"]
+        ]);
     });
 
 });

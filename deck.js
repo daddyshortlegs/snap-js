@@ -1,5 +1,5 @@
 function makeDeck() {
-    const cards = [];
+    let cards = [];
 
     ["H", "D", "S", "C"].forEach(suit => makeSuit(suit));
 
@@ -24,6 +24,8 @@ function makeDeck() {
                 newDeck.push(card);
             }
         }
+
+        cards = newDeck;
 
         return newDeck;
     }
