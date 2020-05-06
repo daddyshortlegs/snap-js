@@ -1,8 +1,4 @@
-function makePlayer(name, deck) {
-
-    function takeCard() {
-
-    }
+function makePlayer(name) {
 
     function reactionTime(lower = 100, upper = 1000) {
         let min = Math.ceil(lower);
@@ -11,7 +7,6 @@ function makePlayer(name, deck) {
     }
 
     return {
-        takeCard,
         name,
         reactionTime
     };
